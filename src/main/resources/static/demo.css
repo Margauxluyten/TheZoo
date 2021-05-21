@@ -32,6 +32,9 @@ h1 {
     top: 150px;
     padding-top: 50px;
     left: 200px;
+    font-family: "Gill Sans MT";
+    letter-spacing: 0.2em;
+
 }
 .contactcontainer{
     color: white;
