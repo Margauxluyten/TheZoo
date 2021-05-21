@@ -16,15 +16,16 @@
       <br>
       <br>
       <div class="contactcontainer">
-        <form th:action="@{savecontact}" method="post" th:object="${newcontact}">
+        <form th:action="@{savetiger}" method="post" th:object="${newtiger}">
           <div class="row">
             <div class="col-md-4">
               <label for="name" class="form-label">Name</label>
               <input id="name" class="form-control" placeholder="Name" name="name">
             </div>
-            <div class="col-md-6">
-              <select class="form-control" th:field="*{country.id}">
-                <option th:each="country :${countries}" th:text="${country.getId()}" th:value="${country.getId()}"></option>
+            <div class="col-md-4">
+              <label for="country" class="form-label">Country</label>
+              <select class="form-control" th:field="*{country.id}" id="country">
+                <option th:each="country :${countries}" th:text="${country.getName()}" th:value="${country.getId()}"></option>
               </select>
             </div>
           <div class="row" style="margin-top: 2%">
@@ -32,11 +33,12 @@
               <button id="submitbnt" type="submit" class="form-control btn btn-primary">Submit</button>
             </div>
           </div>
+          </div>
         </form>
       </div>
     </div>
+    </div>
   </div>
-</div>
 
 
 </body>

@@ -50,8 +50,9 @@ public class TigerRepository {
             //INSERT INTO table_name (column1, column2, column3, ...)
             //VALUES (value1, value2, value3, ...);
             myConnection.setAutoCommit(false); //Since we want to use Transactions, we have to set AutoCommit to false.
-            PreparedStatement myStatement = myConnection.prepareStatement("insert into Tiger(name) values (?)");
+            PreparedStatement myStatement = myConnection.prepareStatement("insert into Tiger(name,country_id) values (?,?)");
             myStatement.setString(1, tiger.getName()); //Use setString instead of getString, also set doesn't return anything
+            myStatement.setInt(2, tiger.getCountry().getId());
             myStatement.execute();//executes the query
             myConnection.commit();// at the end of the try block, this commits the Data to the DB and makes it permanent
         } catch (SQLException e) {//CATCH the exception and handle it in this catch block
