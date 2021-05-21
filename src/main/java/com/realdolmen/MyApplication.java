@@ -6,32 +6,42 @@ import com.realdolmen.domain.Food;
 import com.realdolmen.domain.Tiger;
 import com.realdolmen.services.FoodService;
 import com.realdolmen.services.TigerService;
-
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.List;
 import java.util.Scanner;
 
 
 //this class HAS AN instance of TigerService, FoodService and Scanner
 //(MyApplication only calls methods from service NOT repositories)
+@SpringBootApplication
 public class MyApplication {
     private static Scanner scanner = new Scanner(System.in); //private static outside of main, so it can be used in every method
     private static TigerService tigerService = new TigerService();// this creates an instance of TigerService
     private static FoodService foodService = new FoodService();// this creates an instance of FoodService
-    
+
     public static void main(String[] args) {
-        System.out.println("Welcome to my humble world of programming\n");
-        while (true) { //keeps running until you manually stop the application.
-            /* You don't see 'new MyApplication()' anywhere, so no object is created out of MyApplication.
+       // System.out.println("Welcome to my humble world of programming\n");
+        //System.out.println(PropertiesLoader.loadPropertiesFile().getProperty("db.url"));
+//        System.out.println(PropertiesLoader.loadPropertiesFile().getProperty("db.user"));
+//        System.out.println(PropertiesLoader.loadPropertiesFile().getProperty("db.password"));
+        SpringApplication.run(MyApplication.class);
+
+      /*  while (true) { //keeps running until you manually stop the application.
+           You don't see 'new MyApplication()' anywhere, so no object is created out of MyApplication.
              * But you still can call static methods or static fields without creating an object out of a class.
              * Remember statics are class bounded not object bounded.
              * You can access them through an object, but that doesn't mean they are inside the object 😉
              * This also means that static methods cannot call non-static fields or methods, because non-static fields or methods belong to an object !
              * But non-statics can call statics, because again statics doesn't belong to an object.
-             * */
+             *
             showAndChooseInitialOptions();
         }
-    }
 
+
+       */
+
+    }
     private static void showAndChooseInitialOptions() { //this method is static because we didn't create an object out of MyApplication class.
         System.out.println("Please select an option :");
         System.out.println("\t 1. Fetch Tiger list" +
@@ -74,12 +84,13 @@ public class MyApplication {
         The following code below can be used as an alternative for the normal For each loop (Aka enhanced For loop)
         */
         tigerList.stream().forEach(tiger -> {
-            System.out.print("\t" + tiger + " "); // I use the method print() to print the animal data values without adding a new line (enter) after each animal.
+            System.out.println("\t🐯" + tiger + " "); // I use the method print() to print the animal data values without adding a new line (enter) after each animal.
             /*
             I also want to print out the list of foods for each individual animal.
             println() prints out the list of foods and adds a new line after each print out.
             */
-            System.out.println(tiger.getFoods()); // you could use another 'for loop' to loop over the food list, if you want to customize the print out.
+            System.out.println("\t\t" + tiger.getFoods() + " ");// you could use another 'for loop' to loop over the food list, if you want to customize the print out.
+            System.out.println("\t\t" + tiger.getCountry());
         });
         System.out.println("----------------------"); //out of loop, only adds one line (not after each tiger)
     }
