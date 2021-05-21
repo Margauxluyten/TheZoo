@@ -1,5 +1,8 @@
 package com.realdolmen.domain;
 
+import lombok.experimental.SuperBuilder;
+
+@SuperBuilder
 public class Country {
     private int id;
     private String name;

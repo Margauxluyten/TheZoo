@@ -1,5 +1,6 @@
 package com.realdolmen.services;
 
+import com.realdolmen.domain.Country;
 import com.realdolmen.domain.Tiger;
 import com.realdolmen.repositories.FoodRepository;
 import com.realdolmen.repositories.TigerRepository;
@@ -32,5 +33,9 @@ public class TigerService {
 
     public void addATiger(Tiger tiger) { //tiger is the tiger that was created in "addNewTiger" method in MyApplication
         tigerRepository.addATigerInDb(tiger); // tiger table is added to DB, also see TigerRepository
+    }
+
+    public List<Country> getCountries() {
+        return tigerRepository.getCountries();
     }
 }

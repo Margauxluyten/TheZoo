@@ -1,8 +1,16 @@
 package com.realdolmen.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Data
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tiger {
 
     private int id;

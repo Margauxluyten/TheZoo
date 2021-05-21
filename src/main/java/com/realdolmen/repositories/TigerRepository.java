@@ -72,4 +72,26 @@ public class TigerRepository {
             }
         }
     }
+
+
+    public List<Country> getCountries() {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/zoo","root","P@ssw0rd")) {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from Country ");
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            List<Country> countries = new ArrayList<>();
+            while(resultSet.next()){
+                countries.add(Country.builder()
+                        .name(resultSet.getString("name"))
+                        .id(resultSet.getInt("id"))
+                        .build());
+            }
+
+            return countries;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 }
