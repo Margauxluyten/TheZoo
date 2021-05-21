@@ -1,6 +1,6 @@
 .pill-nav a {
     display: inline-block;
-    color: black;
+    color: white;
     text-align: center;
     padding: 14px;
     text-decoration: none;
@@ -24,11 +24,17 @@ body {
     background-size: cover;
 }
 h1 {
+    color: white;
+    margin-left: 14%;
     font-size: xxx-large;
     border: 150px;
     position: center;
     top: 150px;
     padding-top: 50px;
     left: 200px;
-
 }
+.contactcontainer{
+    color: white;
+    margin-top: 10%;
+}
+
