@@ -95,4 +95,15 @@ public class TigerRepository {
         }
 
     }
+
+    public void deleteATigerInDb(int id) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/games", "root", "P@ssw0rd")) {
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from tiger where id= ? ");
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

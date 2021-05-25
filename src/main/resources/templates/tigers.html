@@ -7,6 +7,26 @@
 <div th:insert="fragments/header :: navbar">
 </div>
 
+<div class="col-md-8 offset-md-2" style="margin-top: 12%">
+    <table class="table table-hover table-dark">
+    <thead>
+    <tr>
+        <th data-field="id">Id</th>
+        <th data-field="name">Name</th>
+        <th data-field="country">Country</th>
+        <th data-field="remove">Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tiger : ${alltigers}">
+        <td th:text="${tiger.getId}"></td>
+        <td th:text="${tiger.getName}"></td>
+        <td th:text="${tiger.getCountry().getName()}"></td>
+       <td><a th:href="@{/delete/{id}(id=${tiger.getId()})}"><i class="fas fa-trash-alt"></i></a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
 
 </body>
 </html>

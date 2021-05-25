@@ -36,6 +36,11 @@ public class TigerService {
     }
 
     public List<Country> getCountries() {
+
         return tigerRepository.getCountries();
+    }
+
+    public void deleteTiger(int id){
+        tigerRepository.deleteATigerInDb(id);
     }
 }
