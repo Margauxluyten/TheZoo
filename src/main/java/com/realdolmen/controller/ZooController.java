@@ -11,4 +11,9 @@ public class ZooController {
         return "index";
     }
 
+    @GetMapping(value ="/about")
+    public String showAboutPage(){
+        return "about";
+    }
+
 }

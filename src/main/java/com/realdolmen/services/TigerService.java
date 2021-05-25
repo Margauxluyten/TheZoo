@@ -43,4 +43,12 @@ public class TigerService {
     public void deleteTiger(int id){
         tigerRepository.deleteATigerInDb(id);
     }
+
+    public void editTiger(Tiger tiger) {
+        tigerRepository.editATigerInDb(tiger);
+    }
+
+    public Tiger findById(int id){
+        return tigerRepository.findById(id);
+    }
 }

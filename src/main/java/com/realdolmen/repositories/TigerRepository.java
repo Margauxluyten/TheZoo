@@ -50,7 +50,7 @@ public class TigerRepository {
             //INSERT INTO table_name (column1, column2, column3, ...)
             //VALUES (value1, value2, value3, ...);
             myConnection.setAutoCommit(false); //Since we want to use Transactions, we have to set AutoCommit to false.
-            PreparedStatement myStatement = myConnection.prepareStatement("insert into Tiger(name,country_id) values (?,?)");
+            PreparedStatement myStatement = myConnection.prepareStatement("insert into Tiger(name,countryId) values (?,?)");
             myStatement.setString(1, tiger.getName()); //Use setString instead of getString, also set doesn't return anything
             myStatement.setInt(2, tiger.getCountry().getId());
             myStatement.execute();//executes the query
@@ -76,12 +76,12 @@ public class TigerRepository {
 
 
     public List<Country> getCountries() {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/zoo","root","P@ssw0rd")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/zoo", "root", "P@ssw0rd")) {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from Country ");
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             List<Country> countries = new ArrayList<>();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 countries.add(Country.builder()
                         .name(resultSet.getString("name"))
                         .id(resultSet.getInt("id"))
@@ -97,13 +97,47 @@ public class TigerRepository {
     }
 
     public void deleteATigerInDb(int id) {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/games", "root", "P@ssw0rd")) {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from tiger where id= ? ");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/zoo", "root", "P@ssw0rd")) {
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from Tiger where id= ? ");
             preparedStatement.setInt(1, id);
 
             preparedStatement.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void editATigerInDb(Tiger tiger) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/zoo", "root", "P@ssw0rd")) {
+            PreparedStatement preparedStatement = connection.prepareStatement("update Tiger set name = ? , countryId = ? where id= ? ");
+            preparedStatement.setString(1, tiger.getName());
+            preparedStatement.setInt(2, tiger.getCountry().getId());
+            preparedStatement.setInt(3, tiger.getId());
+
+            preparedStatement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Tiger findById(int id) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/zoo", "root", "P@ssw0rd")) {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from Tiger where id = ?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            resultSet.next();
+            return Tiger.builder()
+                    .name(resultSet.getString("name"))
+                    .country(Country.builder().id(resultSet.getInt("countryId")).build())
+                    .id(resultSet.getInt("id"))
+                    .build();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

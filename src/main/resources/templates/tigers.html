@@ -6,27 +6,40 @@
 
 <div th:insert="fragments/header :: navbar">
 </div>
+<div class="my-element" id="header">
+    <h1>Tigers</h1>
+</div>
 
 <div class="col-md-8 offset-md-2" style="margin-top: 12%">
     <table class="table table-hover table-dark">
-    <thead>
-    <tr>
-        <th data-field="id">Id</th>
-        <th data-field="name">Name</th>
-        <th data-field="country">Country</th>
-        <th data-field="remove">Remove</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="tiger : ${alltigers}">
-        <td th:text="${tiger.getId}"></td>
-        <td th:text="${tiger.getName}"></td>
-        <td th:text="${tiger.getCountry().getName()}"></td>
-       <td><a th:href="@{/delete/{id}(id=${tiger.getId()})}"><i class="fas fa-trash-alt"></i></a></td>
-    </tr>
-    </tbody>
-</table>
+        <thead>
+        <tr>
+            <th data-field="id">Id</th>
+            <th data-field="name">Name</th>
+            <th data-field="country">Country</th>
+            <th data-field="remove">Remove</th>
+            <th data-field="edit">Edit Tiger</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tiger : ${alltigers}">
+            <td th:text="${tiger.getId}"></td>
+            <td th:text="${tiger.getName}"></td>
+            <td th:text="${tiger.getCountry().getName()}"></td>
+            <td><a th:href="@{/delete/{id}(id=${tiger.getId()})}"><i class="fas fa-trash-alt"></i></a></td>
+            <td><a th:href="@{/editPage/{id}(id=${tiger.getId()})}"><i class="far fa-edit"></i></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="col-md-2">
+        <button id="submitbnt" type="submit" class="form-control btn btn-primary"><a th:href="@{/addtigers}">Add A
+            Tiger</a></button>
+    </div>
+</div>
+
 </div>
 
 </body>
+<div th:insert="fragments/header :: scriptje"></div>
+
 </html>

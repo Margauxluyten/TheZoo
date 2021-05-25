@@ -19,6 +19,20 @@ public class TigerController {
         return "tigers";
     }
 
+    @GetMapping(value = "/editPage/{id}")
+    public String showEditPage(@PathVariable("id") int id, Model model){
+        model.addAttribute("countries",tigerService.getCountries());
+        model.addAttribute("editanimal",tigerService.findById(id));
+        return "edit";
+    }
+
+
+    @PostMapping(value = "/editPage/{id}")
+    public String editTiger(@ModelAttribute Tiger tiger) {
+        tigerService.editTiger(tiger);
+        return "redirect:/";
+    }
+
 
     @GetMapping(value = "/addtigers")
     public String addTigerPage(Model model) {
@@ -34,8 +48,8 @@ public class TigerController {
         return "redirect:/";
     }
 
-    @GetMapping(value= "/delete/{gameId}")
-    public String deleteAGame(@PathVariable("gameId")int id){
+    @GetMapping(value= "/delete/{tigerId}")
+    public String deleteAGame(@PathVariable("tigerId")int id){
         tigerService.deleteTiger(id);
         return "redirect:/";
     }

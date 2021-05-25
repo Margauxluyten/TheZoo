@@ -22,6 +22,8 @@
 body {
     background-image: url("pexels-valeriia-miller-2610309.jpg");
     background-size: cover;
+    background-blend-mode: overlay;
+    background-color: darkslategrey;
 }
 h1 {
     color: white;
@@ -40,4 +42,48 @@ h1 {
     color: white;
     margin-top: 10%;
 }
+#submitbnt {
+    font-family: inherit;
+    text-decoration: none;
+}
+#submitbnt a{
+    color: white;
+    text-decoration: none;
+}
+
+#submitbnt a:hover{
+    color: white;
+    text-decoration: none;
+}
+#submitbnt a:active{
+    color: white;
+    text-decoration: none;
+}
+#submitbnt a:visited{
+    color: white;
+    text-decoration: none;
+}
+.text{
+    margin-top: 10%;
+    font-family: "Gill Sans MT";
+    text-align: center;
+    font-size: small;
+}
+.content{
+    max-width: 750px;
+    margin: auto;
+}
+#about{
+    background-blend-mode: overlay;
+    background-color: darkslategrey;
+}
+
+.my-element {
+    margin: 0 0.5rem;
+
+    animation: bounce; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s; /* don't forget to set a duration! */
+}
+
+
 
